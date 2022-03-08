@@ -47,6 +47,12 @@ $ mvn spring-boot:run
 
 ## Endpoints
 
+To display the JSON outputs in a readable way, install the following module (by using **npm**):
+<pre>
+# npm i -g json
+</pre>
+Then, append the **| json** stetement piece to every cURL call like I do it in the following instructions. 
+
 ### POST
 
 **[store]**<br>
