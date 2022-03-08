@@ -18,7 +18,10 @@ These entities keep a **ONE-TO-MANY** relationship.
 ```
 mysql> CREATE DATABASE newspaper;
 ```
+<p>
 There is no need to create any table because the **application.properties** file is set to follow a **Code First** approach.  
+</p>
+
 2. Open the database connection file **src/main/resources/application.properties** 
 
 3. Update with your own credentials (user/password for your local MySQL) and other fields if necessary
