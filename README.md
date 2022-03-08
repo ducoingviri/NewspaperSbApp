@@ -6,7 +6,7 @@ These entities keep a one-to-many relationship.
 
 ## Environment
 
-**OS** CentOS 8.4
+**OS** CentOS 8.4  
 **Framework** Spring Boot 2.6.4<br>
 **Database** MySQL 8.0.26<br>
 **Package Manager** Maven 3.8.4<br>
