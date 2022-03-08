@@ -19,7 +19,7 @@ These entities keep a **ONE-TO-MANY** relationship.
 mysql> CREATE DATABASE newspaper;
 ```
 <p>
-There is no need to create any table because the **application.properties** file is set to follow a **Code First** approach.  
+There is no need to create any table because the <b>application.properties</b> file is set to follow a <b>Code First</b> approach.  
 </p>
 
 2. Open the database connection file **src/main/resources/application.properties** 
