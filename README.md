@@ -32,7 +32,7 @@ $ git clone https://github.com/ducoingviri/NewspaperSbApp.git
 $ cd NewspaperSbApp/
 ```
 
-5. Remove a previous compilation and compile again
+5. Remove previous compilation and compile again
 ```
 $ mvn clean && mvn compile
 ```
