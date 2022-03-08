@@ -7,10 +7,10 @@ These entities keep a one-to-many relationship.
 ## Environment
 
 **OS** CentOS 8.4  
-**Framework** Spring Boot 2.6.4<br>
-**Database** MySQL 8.0.26<br>
-**Package Manager** Maven 3.8.4<br>
-**OpenJDK** 1.8.0 312<br>
+**Framework** Spring Boot 2.6.4  
+**Database** MySQL 8.0.26  
+**Package Manager** Maven 3.8.4  
+**OpenJDK** 1.8.0 312  
 
 ## Deployment
 
@@ -22,13 +22,14 @@ mysql> CREATE DATABASE newspaper;
 
 3. Update with your own credentials (user/password for your local MySQL) and other fields if necessary
 <pre>
-spring.datasource.username=<b>YOUR.USER></b>
-spring.datasource.password=<b>YOUR.PASSWORD></b>
+spring.datasource.username=<b>YOUR.USER</b>
+spring.datasource.password=<b>YOUR.PASSWORD</b>
 </pre>
 
 4. Clone this repo locally
 ```
 $ git clone https://github.com/ducoingviri/NewspaperSbApp.git
+$ cd NewspaperSbApp/
 ```
 
 5. Clean a previous compilation and compile again
