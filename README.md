@@ -1,8 +1,8 @@
 # NewspaperSbApp
 
-This is a backend application developed with Spring Boot.
-Exposes a relationship between 2 entities: Post and Comment.
-These entities keep a one-to-many relationship.
+This is a backend application developed with **Spring Boot**.
+Exposes a relationship between 2 entities: **Post** and **Comment**.
+These entities keep a **ONE-TO-MANY** relationship.
 
 ## Environment
 
@@ -36,7 +36,7 @@ $ cd NewspaperSbApp/
 ```
 $ mvn clean && mvn compile
 ```
-6. Create the database from the project code
+6. If no errors, create the database from the project code
 ```
 $ mvn install
 ```
