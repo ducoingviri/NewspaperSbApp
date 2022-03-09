@@ -14,9 +14,9 @@ These entities keep a **ONE-TO-MANY** relationship.
 
 ## Deployment
 
-1. Create the **newspaper** database
+1. Create the **newspaper** database at MySQL CLI
 ```
-mysql> CREATE DATABASE newspaper;
+CREATE DATABASE newspaper;
 ```
 <p>
 There is no need to create any table because the <b>application.properties</b> file is set to follow a <b>Code First</b> approach.  
@@ -26,28 +26,45 @@ There is no need to create any table because the <b>application.properties</b> f
 
 3. Update with your own credentials (user/password for your local MySQL) and other fields if necessary
 <pre>
-spring.datasource.username=<b>YOUR.USER</b>
-spring.datasource.password=<b>YOUR.PASSWORD</b>
+spring.datasource.username=<b>USER</b>
+spring.datasource.password=<b>PASSWORD</b>
 </pre>
 
 4. Clone this repo locally
 ```
-$ git clone https://github.com/ducoingviri/NewspaperSbApp.git
-$ cd NewspaperSbApp/
+git clone https://github.com/ducoingviri/NewspaperSbApp.git
+cd NewspaperSbApp/
 ```
 
 5. Remove previous compilation and compile again
 ```
-$ mvn clean && mvn compile
+mvn clean && mvn compile
 ```
 6. If no errors, create the database from the project code
 ```
-$ mvn install
+mvn install
 ```
 7. If no errors, run the backend application
 ```
-$ mvn spring-boot:run
+mvn spring-boot:run
 ```
+8. [OPTIONAL] Set Cors Registry at the **src/main/java/com/app/newspaper/NewspaperSbApp.java** main class to enable global backend consumption from a frontend application
+```
+import org.springframework.context.annotation.Bean;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+...
+@Bean
+public WebMvcConfigurer corsConfigurer() {
+    return new WebMvcConfigurer() {
+        @Override
+        public void addCorsMappings(CorsRegistry registry) {
+            registry.addMapping("/api/*").allowedOrigins("http://FRONT.APP.IP:FRONT.APP.PORT");
+        }
+    };
+}
+```
+
 
 ## Endpoints
 
