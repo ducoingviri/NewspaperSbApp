@@ -93,22 +93,15 @@ curl -X DELETE http://localhost:8080/api/comment/1
 
 ## Frontend Integration
 
-Set Cors Registry at the **src/main/java/com/app/newspaper/NewspaperSbApp.java** main class to enable global backend consumption from a frontend application
+Set Cors Registry at controller level to enable global backend consumption from a frontend application. For example, at PostController, we must add the following @CrossOrigin annotation line to enable consumption.
 
 <pre>
-import org.springframework.context.annotation.Bean;
-import org.springframework.web.servlet.config.annotation.CorsRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 ...
-@Bean
-public WebMvcConfigurer corsConfigurer() {
-    return new WebMvcConfigurer() {
-        @Override
-        public void addCorsMappings(CorsRegistry registry) {
-            registry.addMapping("/api/*").allowedOrigins("http://<b>FRONT.APP.IP</b>:<b>FRONT.APP.PORT</b>");
-        }
-    };
-}
+@CrossOrigin(origins = "http://<b>FRONT.APP.IP</b>:<b>FRONT.APP.PORT</b>", maxAge = 3600)
+@RestController
+@RequestMapping("/api/post")
+public class PostController {
+...
 </pre>
 
 ## Enable New Endpoints
