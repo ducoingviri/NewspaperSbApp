@@ -93,7 +93,7 @@ curl -X DELETE http://localhost:8080/api/comment/1
 
 ## Frontend Integration
 
-Set Cors Registry at controller level to enable backend consumption from a frontend application. For example, at PostController, we must add the following @CrossOrigin annotation line to enable consumption.
+Set Cors Registry at controller level to enable backend consumption from a frontend application. For example, at PostController, we must add the following **@CrossOrigin** annotation line to enable consumption.
 
 <pre>
 ...
