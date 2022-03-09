@@ -48,22 +48,6 @@ mvn install
 ```
 mvn spring-boot:run
 ```
-8. **[OPTIONAL]** Set Cors Registry at the **src/main/java/com/app/newspaper/NewspaperSbApp.java** main class to enable global backend consumption from a frontend application
-<pre>
-import org.springframework.context.annotation.Bean;
-import org.springframework.web.servlet.config.annotation.CorsRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-...
-@Bean
-public WebMvcConfigurer corsConfigurer() {
-    return new WebMvcConfigurer() {
-        @Override
-        public void addCorsMappings(CorsRegistry registry) {
-            registry.addMapping("/api/*").allowedOrigins("http://<b>FRONT.APP.IP</b>:<b>FRONT.APP.PORT</b>");
-        }
-    };
-}
-</pre>
 
 ## Endpoints
 
@@ -106,3 +90,58 @@ curl -s http://localhost:8080/api/comment/1 | json
 <br>
 **[destroy]**<br>
 curl -X DELETE http://localhost:8080/api/comment/1
+
+## Frontend Integration
+
+Set Cors Registry at the **src/main/java/com/app/newspaper/NewspaperSbApp.java** main class to enable global backend consumption from a frontend application
+
+<pre>
+import org.springframework.context.annotation.Bean;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+...
+@Bean
+public WebMvcConfigurer corsConfigurer() {
+    return new WebMvcConfigurer() {
+        @Override
+        public void addCorsMappings(CorsRegistry registry) {
+            registry.addMapping("/api/*").allowedOrigins("http://<b>FRONT.APP.IP</b>:<b>FRONT.APP.PORT</b>");
+        }
+    };
+}
+</pre>
+
+## Enable New Endpoints
+
+Due to our repository interface extends JpaRepository, we can add customized endpoints using an specific syntax. For example, for adding an endpoint to retrieve all the posts filtering by _author_ field, we must declare a method in our repository like the following one.
+
+<pre>
+List<Post> findByAuthor(String value);
+</pre>
+
+Likewise, if we would like to add an endpoint that retrieve all the posts filtering by _createdat_ field, we must declare a method in our repository like the following one.
+
+<pre>
+List<Post> findByCreatedat(Date value);
+</pre>
+
+Finally, we should implement the action in our controller. For example, for the _findByAuthor_ repository method, we can implement an action controller like the following one.
+
+<pre>
+@GetMapping("/find-by-author")
+public ResponseEntity<List<Post>> findByAuthor(@RequestParam String value) {
+    try {
+        List<Post> items = new ArrayList<Post>();
+        repository.findByAuthor(value).forEach(items::add);
+        if (items.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<>(items, HttpStatus.OK);
+    } catch (Exception e) {
+        return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+}
+</pre>
+
+For more information about how to declare repository methods for specific needs, visit the following site:  
+<a href="https://docs.spring.io/spring-data/jpa/docs/current/reference/html/#repositories.query-methods.details">Defining Query Methods</a>
