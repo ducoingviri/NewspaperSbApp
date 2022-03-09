@@ -116,32 +116,33 @@ public WebMvcConfigurer corsConfigurer() {
 Due to our repository interface extends JpaRepository, we can add customized endpoints using an specific syntax. For example, for adding an endpoint to retrieve all the posts filtering by _author_ field, we must declare a method in our repository like the following one.
 
 <pre>
-List<Post> findByAuthor(String value);
+List&lt;Post> findByAuthor(String value);
 </pre>
 
 Likewise, if we would like to add an endpoint that retrieve all the posts filtering by _createdat_ field, we must declare a method in our repository like the following one.
 
 <pre>
-List<Post> findByCreatedat(Date value);
+List&lt;Post> findByCreatedat(Date value);
 </pre>
 
 Finally, we should implement the action in our controller. For example, for the _findByAuthor_ repository method, we can implement an action controller like the following one.
 
 <pre>
 @GetMapping("/find-by-author")
-public ResponseEntity<List<Post>> findByAuthor(@RequestParam String value) {
+public ResponseEntity&lt;List&lt;Post>> findByAuthor(@RequestParam String value) {
     try {
-        List<Post> items = new ArrayList<Post>();
+        List&lt;Post> items = new ArrayList&lt;Post>();
         repository.findByAuthor(value).forEach(items::add);
         if (items.isEmpty()) {
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            return new ResponseEntity&lt;>(HttpStatus.NO_CONTENT);
         }
-        return new ResponseEntity<>(items, HttpStatus.OK);
+        return new ResponseEntity&lt;>(items, HttpStatus.OK);
     } catch (Exception e) {
-        return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        return new ResponseEntity&lt;>(null, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }
 </pre>
 
-For more information about how to declare repository methods for specific needs, visit the following site:  
-<a href="https://docs.spring.io/spring-data/jpa/docs/current/reference/html/#repositories.query-methods.details">Defining Query Methods</a>
+For more information about how to declare repository methods for specific needs, visit 
+<a href="https://docs.spring.io/spring-data/jpa/docs/current/reference/html/#repositories.query-methods.details">Defining Query Methods</a>.
+
