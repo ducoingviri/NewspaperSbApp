@@ -48,8 +48,8 @@ mvn install
 ```
 mvn spring-boot:run
 ```
-8. [OPTIONAL] Set Cors Registry at the **src/main/java/com/app/newspaper/NewspaperSbApp.java** main class to enable global backend consumption from a frontend application
-```
+8. <span style="color:yellow">[OPTIONAL]</span> Set Cors Registry at the **src/main/java/com/app/newspaper/NewspaperSbApp.java** main class to enable global backend consumption from a frontend application
+<pre>
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
@@ -59,12 +59,11 @@ public WebMvcConfigurer corsConfigurer() {
     return new WebMvcConfigurer() {
         @Override
         public void addCorsMappings(CorsRegistry registry) {
-            registry.addMapping("/api/*").allowedOrigins("http://FRONT.APP.IP:FRONT.APP.PORT");
+            registry.addMapping("/api/*").allowedOrigins("http://<b>FRONT.APP.IP</b>:<b>FRONT.APP.PORT</b>");
         }
     };
 }
-```
-
+</pre>
 
 ## Endpoints
 
